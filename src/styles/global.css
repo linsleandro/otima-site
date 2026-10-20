@@ -29,6 +29,20 @@ body {
   color: var(--color-navy-dark);
 }
 
+/* Status de formulário sem JS: só o bloco cujo id está na âncora aparece;
+   no sucesso, o formulário seguinte some (FormStatus.astro). */
+.form-status > [id] {
+  display: none;
+  scroll-margin-top: 6rem;
+}
+.form-status > [id]:target {
+  display: block;
+}
+.form-status:has(#enviado:target) ~ form,
+:has(> .form-status #enviado:target) ~ form {
+  display: none;
+}
+
 /* Trilha B2C — estilo "sketch editorial" (aplicar SOMENTE em /parecer-estrategico) */
 .sketch-card {
   border: 2px solid var(--color-navy);

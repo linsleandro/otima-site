@@ -75,7 +75,7 @@ async function deliver(data: FormSubmission): Promise<void> {
 
 export const POST: APIRoute = async ({ request, clientAddress, redirect }) => {
   const formData = await request.formData().catch(() => null);
-  if (!formData) return redirect('/contato?erro=validacao', 303);
+  if (!formData) return redirect('/contato#erro-validacao', 303);
 
   const back = RETURN_PATHS[String(formData.get('form'))] ?? '/contato';
 
@@ -86,18 +86,18 @@ export const POST: APIRoute = async ({ request, clientAddress, redirect }) => {
     // Sem IP disponível (ex.: dev) — cai na chave compartilhada "unknown".
   }
   if (!limiter.check(ip).allowed) {
-    return redirect(`${back}?erro=limite#formulario`, 303);
+    return redirect(`${back}#erro-limite`, 303);
   }
 
   // Honeypot preenchido: responder como sucesso para não ensinar o bot.
   const honeypot = formData.get('website');
   if (typeof honeypot === 'string' && honeypot !== '') {
-    return redirect(`${back}?enviado=1#formulario`, 303);
+    return redirect(`${back}#enviado`, 303);
   }
 
   const result = parseSubmission(formData);
   if (!result.success) {
-    return redirect(`${back}?erro=validacao#formulario`, 303);
+    return redirect(`${back}#erro-validacao`, 303);
   }
 
   try {
@@ -105,8 +105,8 @@ export const POST: APIRoute = async ({ request, clientAddress, redirect }) => {
   } catch {
     // Não logar o conteúdo da submissão — apenas o fato da falha.
     console.error('[forms] Falha ao entregar e-mail de formulário.');
-    return redirect(`${back}?erro=envio#formulario`, 303);
+    return redirect(`${back}#erro-envio`, 303);
   }
 
-  return redirect(`${back}?enviado=1#formulario`, 303);
+  return redirect(`${back}#enviado`, 303);
 };

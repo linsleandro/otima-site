@@ -1,38 +1,29 @@
 ---
+// Status do formulário SEM JavaScript: o endpoint redireciona para
+// `#enviado`, `#erro-validacao`, `#erro-limite` ou `#erro-envio`, e o CSS
+// (global.css, seletor :target) mostra o bloco correspondente e, no sucesso,
+// esconde o <form> seguinte. Compatível com a CSP script-src 'self'.
 interface Props {
   successMessage?: string;
 }
 const { successMessage = 'Mensagem recebida. Retornaremos em breve.' } = Astro.props;
 ---
 
-<div data-form-status class="space-y-2 empty:hidden">
-  <p hidden data-status="enviado" class="rounded-md border border-green-700 bg-green-50 px-4 py-3 text-sm text-green-900">
-    {successMessage}
-  </p>
-  <p hidden data-status="validacao" class="rounded-md border border-red-700 bg-red-50 px-4 py-3 text-sm text-red-900">
+<div class="form-status space-y-2">
+  <div id="enviado" class="rounded-md border border-green-700 bg-green-50 px-5 py-4 text-green-900">
+    <p class="font-semibold">Recebemos o seu contato.</p>
+    <p class="mt-1 text-sm">{successMessage}</p>
+  </div>
+  <p id="erro-validacao" class="rounded-md border border-red-700 bg-red-50 px-4 py-3 text-sm text-red-900">
     Não foi possível enviar: confira se todos os campos obrigatórios estão preenchidos corretamente e aceite a
     política de privacidade.
   </p>
-  <p hidden data-status="limite" class="rounded-md border border-amber-700 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+  <p id="erro-limite" class="rounded-md border border-amber-700 bg-amber-50 px-4 py-3 text-sm text-amber-900">
     Muitas tentativas em pouco tempo. Aguarde alguns minutos e tente novamente.
   </p>
-  <p hidden data-status="envio" class="rounded-md border border-red-700 bg-red-50 px-4 py-3 text-sm text-red-900">
+  <p id="erro-envio" class="rounded-md border border-red-700 bg-red-50 px-4 py-3 text-sm text-red-900">
     Houve uma falha técnica no envio. Fale conosco por
     <a href="mailto:contato@otimaconsultoria.com.br" class="underline">e-mail</a> ou
     <a href="https://wa.me/556730154922" rel="noopener" class="underline">WhatsApp</a>.
   </p>
 </div>
-
-<script>
-  // Mostra o status vindo do redirect do endpoint (?enviado=1 | ?erro=...).
-  // Script externo (bundle do Astro) — compatível com CSP script-src 'self'.
-  const params = new URLSearchParams(window.location.search);
-  const status = params.has('enviado') ? 'enviado' : params.get('erro');
-  if (status) {
-    const el = document.querySelector<HTMLElement>(`[data-status="${CSS.escape(status)}"]`);
-    if (el) {
-      el.hidden = false;
-      el.scrollIntoView({ block: 'center' });
-    }
-  }
-</script>
