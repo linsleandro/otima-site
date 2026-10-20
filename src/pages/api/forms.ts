@@ -57,8 +57,11 @@ async function deliver(data: FormSubmission): Promise<void> {
     return;
   }
   const resend = new Resend(apiKey);
-  const { error } = await resend.emails.send({
-    from: import.meta.env.FORMS_FROM_EMAIL ?? 'Site Ótima <site@otimaconsultoria.com.br>',
+  const { data: sent, error } = await resend.emails.send({
+    // Até o domínio otimaconsultoria.com.br ser verificado no Resend, só o
+    // remetente de teste funciona. Depois da verificação, definir
+    // FORMS_FROM_EMAIL="Site Ótima <site@otimaconsultoria.com.br>" na Vercel.
+    from: import.meta.env.FORMS_FROM_EMAIL ?? 'Site Ótima <onboarding@resend.dev>',
     to: import.meta.env.FORMS_TO_EMAIL ?? 'contato@otimaconsultoria.com.br',
     // O registro do Parecer não coleta e-mail (retorno é pelo WhatsApp).
     ...('email' in data ? { replyTo: data.email } : {}),
@@ -66,6 +69,8 @@ async function deliver(data: FormSubmission): Promise<void> {
     html: buildEmailHtml(data),
   });
   if (error) throw new Error(`Falha no envio: ${error.name}`);
+  // Só o ID do envio — nunca o conteúdo (CLAUDE.md §5).
+  console.info(`[forms] e-mail enviado (${data.form}) id=${sent?.id ?? '?'}`);
 }
 
 export const POST: APIRoute = async ({ request, clientAddress, redirect }) => {
