@@ -68,7 +68,7 @@ async function deliver(data: FormSubmission): Promise<void> {
     subject: SUBJECTS[data.form],
     html: buildEmailHtml(data),
   });
-  if (error) throw new Error(`Falha no envio: ${error.name}`);
+  if (error) throw new Error(`Falha no envio: ${error.name} — ${error.message}`);
   // Só o ID do envio — nunca o conteúdo (CLAUDE.md §5).
   console.info(`[forms] e-mail enviado (${data.form}) id=${sent?.id ?? '?'}`);
 }
@@ -102,9 +102,9 @@ export const POST: APIRoute = async ({ request, clientAddress, redirect }) => {
 
   try {
     await deliver(result.data);
-  } catch {
+  } catch (err) {
     // Não logar o conteúdo da submissão — apenas o fato da falha.
-    console.error('[forms] Falha ao entregar e-mail de formulário.');
+    console.error('[forms] Falha ao entregar e-mail de formulário:', err instanceof Error ? err.message : String(err));
     return redirect(`${back}#erro-envio`, 303);
   }
 
