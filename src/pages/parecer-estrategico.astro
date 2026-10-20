@@ -1,0 +1,237 @@
+---
+import Base from '../layouts/Base.astro';
+import FormStatus from '../components/FormStatus.astro';
+
+// Trilha Décio (B2C). PROIBIDO nesta página: copy institucional/licitação
+// (edital, Sistema S, proposta técnica) — CLAUDE.md §2.2.
+//
+// Funil redesenhado em 02/09/2026 (síntese em memória de projeto): seleção
+// mensal por curadoria -> WhatsApp -> reunião de 30min (diagnóstico, ANTES
+// de proposta/pagamento) -> proposta e preço por WhatsApp -> pagamento ->
+// entrega única (Apresentação + Relatório + Infográfico + Podcast).
+// Preço NÃO aparece nesta página por decisão do Leandro: é comunicado na
+// reunião/proposta, não publicamente. Pontos ainda em aberto (ver
+// docs/COPY-REVIEW.md): se o formulário abaixo continua como porta de
+// entrada real ou vira só registro de interesse; se sobra um encontro ao
+// vivo pós-pagamento; se há sessão de ajuste pós-entrega.
+
+const comoFunciona = [
+  {
+    titulo: '1. Você conta a decisão',
+    texto: 'Uma frase no formulário abaixo, com seu nome e WhatsApp. Só isso.',
+  },
+  {
+    titulo: '2. Leandro chama no WhatsApp',
+    texto: 'Em até um dia útil, já falando da sua decisão, para marcar uma conversa no Google Meet.',
+  },
+  {
+    titulo: '3. Conversa de 30 minutos',
+    texto: 'Diagnóstico e entendimento da complexidade do caso — antes de qualquer proposta ou pagamento.',
+  },
+  {
+    titulo: '4. Proposta por WhatsApp',
+    texto: 'Valor definido pela complexidade da decisão, com a forma de pagamento. Você decide se faz sentido.',
+  },
+  {
+    titulo: '5. Entrega completa',
+    texto: 'Apresentação, Relatório, Infográfico e Podcast, entregues de uma vez por WhatsApp e e-mail.',
+  },
+];
+
+const casos = [
+  {
+    setor: 'Advocacia',
+    titulo: 'Reposicionamento para mercado corporativo',
+    texto: 'Meses de debate interno resolvidos com diagnóstico real. Saiu com direção clara, não com mais opiniões.',
+  },
+  {
+    setor: 'Agronegócio',
+    titulo: 'Diferenciação de metodologia técnica',
+    texto: 'Saiu sabendo exatamente como o mercado enxerga o que ele faz — e onde estava deixando dinheiro na mesa.',
+  },
+  {
+    setor: 'Alimentação',
+    titulo: 'Viabilidade de entrada em eventos corporativos',
+    texto: 'Sim ou não — com dado. Não com achismo de sócio.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Parecer Estratégico',
+  serviceType: 'Consultoria de decisão com dados de mercado',
+  description:
+    'Parecer estratégico individual para empresários PME com uma decisão travada: seleção mensal por curadoria, diagnóstico em reunião de 30 minutos e entrega de análise com dados reais.',
+  provider: {
+    '@type': 'ProfessionalService',
+    name: 'Ótima Inteligência de Mercado',
+    url: 'https://otimaconsultoria.com.br',
+  },
+};
+---
+
+<Base
+  variant="b2c"
+  title="Parecer Estratégico — decisão travada, respondida com dado real | Ótima"
+  description="Parecer estratégico para empresários PME com uma decisão travada: seleção mensal, diagnóstico em reunião de 30 minutos com Leandro Lins e análise com dados reais. Registre seu interesse."
+  jsonLd={jsonLd}
+>
+  <!-- Hero (spec parecer-estrategico.md §1) -->
+  <section class="mx-auto max-w-4xl px-4 pb-14 pt-20 text-center">
+    <p class="text-sm font-bold uppercase tracking-widest text-navy/60">Parecer Estratégico</p>
+    <h1 class="mt-4 text-4xl font-bold leading-tight tracking-tight text-navy sm:text-5xl">
+      Uma decisão travada custa mais caro que <span class="sketch-underline">a resposta</span>.
+    </h1>
+    <p class="mx-auto mt-6 max-w-2xl text-lg text-navy-dark/85">
+      Você já sabe qual é a decisão: expandir, reajustar preço, reagir ao concorrente. O que falta é dado para
+      decidir com segurança. Numa seleção mensal, você conversa direto com quem faz pesquisa de mercado há 21
+      anos — pela sua decisão, não por um relatório genérico.
+    </p>
+    <a
+      href="#formulario"
+      class="sketch-card mt-8 inline-block bg-cyan px-8 py-4 text-lg font-bold text-navy-dark transition hover:bg-white"
+    >
+      Quero conversar sobre a minha decisão
+    </a>
+    <p class="mt-3 text-sm text-navy/60">Conversa de 30 min, sem compromisso · vagas limitadas por mês</p>
+  </section>
+
+  <!-- O que é (spec §2) -->
+  <section class="mx-auto max-w-4xl px-4 py-10">
+    <div class="sketch-card bg-white p-8">
+      <h2 class="text-2xl font-bold text-navy">Isto não é consultoria genérica</h2>
+      <p class="mt-4 text-navy-dark/85">
+        O Parecer Estratégico é uma análise individual: você traz uma decisão específica, e a Ótima responde com
+        dado de mercado real e uma recomendação assinada. Sem pacote de horas, sem diagnóstico interminável, sem
+        consultor recém-formado aprendendo no seu negócio.
+      </p>
+    </div>
+  </section>
+
+  <!-- O que você recebe: Apresentação + Relatório + Infográfico + Podcast,
+       entregues de uma vez após a proposta e o pagamento -->
+  <section class="mx-auto max-w-4xl px-4 py-10">
+    <h2 class="text-center text-3xl font-bold text-navy">O que você recebe</h2>
+    <p class="mx-auto mt-3 max-w-xl text-center text-navy-dark/80">
+      Apresentação, Relatório, Infográfico e Podcast — entregues de uma vez, por WhatsApp e e-mail.
+    </p>
+  </section>
+
+  <!-- Como funciona: seleção mensal -> WhatsApp -> reunião de 30min (antes
+       do pagamento) -> proposta -> entrega. Sem preço nesta página. -->
+  <section class="mx-auto max-w-5xl px-4 py-10">
+    <h2 class="text-center text-3xl font-bold text-navy">Como funciona</h2>
+    <ol class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        comoFunciona.map((item) => (
+          <li class="sketch-card bg-white p-6">
+            <h3 class="text-lg font-bold text-navy">{item.titulo}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-navy-dark/80">{item.texto}</p>
+          </li>
+        ))
+      }
+    </ol>
+    <p class="mx-auto mt-8 max-w-2xl text-center text-sm text-navy/60">
+      O valor varia com a complexidade da decisão e é apresentado na proposta, depois da conversa — por isso não
+      está publicado aqui.
+    </p>
+  </section>
+
+  <!-- Para quem é / não é (spec §5) -->
+  <section class="mx-auto max-w-5xl px-4 py-10">
+    <div class="grid gap-6 md:grid-cols-2">
+      <div class="sketch-card bg-white p-8">
+        <h2 class="text-xl font-bold text-navy">É para você se…</h2>
+        <ul class="mt-4 space-y-3 text-navy-dark/85">
+          <li>✔ Você comanda uma empresa com anos de estrada e tem <strong>uma decisão específica</strong> parada.</li>
+          <li>✔ Já cansou de opinião de palpiteiro e quer <strong>dado</strong> antes de agir.</li>
+          <li>✔ Consegue descrever a decisão em poucas frases — expansão, preço, concorrência, novo mercado.</li>
+        </ul>
+      </div>
+      <div class="sketch-card bg-white p-8">
+        <h2 class="text-xl font-bold text-navy">Não é para você se…</h2>
+        <ul class="mt-4 space-y-3 text-navy-dark/85">
+          <li>✘ Você quer um plano de negócios completo ou mentoria contínua.</li>
+          <li>✘ A empresa ainda é uma ideia — sem operação, não há dado seu para analisar.</li>
+          <li>✘ Você busca alguém para confirmar o que já decidiu.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Casos anteriores — texto de Leandro, trazido do site anterior
+       (parecerestrategico.netlify.app), aprovado em 20/10/2026. -->
+  <section class="mx-auto max-w-5xl px-4 py-10">
+    <h2 class="text-center text-3xl font-bold text-navy">Casos anteriores</h2>
+    <ul class="mt-10 grid gap-6 md:grid-cols-3">
+      {
+        casos.map((caso) => (
+          <li class="sketch-card bg-white p-6">
+            <p class="text-xs font-bold uppercase tracking-widest text-navy/60">{caso.setor}</p>
+            <h3 class="mt-2 text-lg font-bold text-navy">{caso.titulo}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-navy-dark/80">{caso.texto}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <!-- Registro de interesse na seleção mensal — 3 perguntas de curadoria
+       (spec §6, reenquadrado em 02/09/2026: não garante atendimento nem
+       resposta em prazo fixo; seleção é por curadoria do Leandro). -->
+  <section id="formulario" class="mx-auto max-w-3xl px-4 py-14">
+    <div class="sketch-card bg-white p-8 sm:p-10">
+      <h2 class="text-3xl font-bold text-navy">Conte qual decisão está travada</h2>
+      <p class="mt-3 text-navy-dark/80">
+        Uma frase basta. Leandro chama você no WhatsApp para marcar uma conversa de 30 minutos — sem
+        compromisso e sem pagamento antes disso.
+      </p>
+
+      <div class="mt-6">
+        <FormStatus successMessage="Recebido. Leandro chama você no WhatsApp informado para marcar a conversa." />
+      </div>
+
+      <form method="post" action="/api/forms" class="mt-6 grid gap-6">
+        <input type="hidden" name="form" value="parecer" />
+        <!-- Honeypot: invisível para humanos -->
+        <div class="hidden" aria-hidden="true">
+          <label>Não preencha este campo <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+        </div>
+
+        <label class="grid gap-1 font-semibold text-navy">
+          Qual decisão está travada hoje? *
+          <textarea required minlength="10" maxlength="2000" name="decisao" rows="3"
+            class="rounded-md border-2 border-navy/30 bg-white px-3 py-2 font-normal text-navy-dark focus:border-navy focus:outline-none"
+            placeholder="Ex.: abrir a segunda unidade agora ou segurar mais um ano?"></textarea>
+        </label>
+
+        <div class="grid gap-6 sm:grid-cols-2">
+          <label class="grid gap-1 text-sm font-semibold text-navy">
+            Nome *
+            <input required minlength="2" maxlength="120" name="nome" type="text" autocomplete="name"
+              class="rounded-md border-2 border-navy/30 bg-white px-3 py-2 font-normal text-navy-dark focus:border-navy focus:outline-none" />
+          </label>
+          <label class="grid gap-1 text-sm font-semibold text-navy">
+            WhatsApp *
+            <input required minlength="8" maxlength="30" name="whatsapp" type="tel" autocomplete="tel"
+              class="rounded-md border-2 border-navy/30 bg-white px-3 py-2 font-normal text-navy-dark focus:border-navy focus:outline-none" />
+          </label>
+        </div>
+
+        <label class="flex items-start gap-2 text-sm text-navy-dark/80">
+          <input required type="checkbox" name="consentimento" class="mt-1" />
+          <span>
+            Autorizo o uso dos dados informados para retorno deste registro de interesse, conforme a
+            <a href="/privacidade" class="underline">política de privacidade</a>. *
+          </span>
+        </label>
+
+        <button type="submit"
+          class="sketch-card justify-self-start bg-cyan px-8 py-3 text-lg font-bold text-navy-dark transition hover:bg-navy hover:text-white">
+          Quero conversar
+        </button>
+      </form>
+    </div>
+  </section>
+</Base>

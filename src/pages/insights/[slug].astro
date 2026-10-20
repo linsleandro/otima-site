@@ -1,0 +1,54 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('insights', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formato = new Intl.DateTimeFormat('pt-BR', { dateStyle: 'long' });
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  inLanguage: 'pt-BR',
+  author: { '@type': 'Person', name: 'Leandro Lins' },
+  publisher: { '@type': 'Organization', name: 'Ótima Inteligência de Mercado' },
+  mainEntityOfPage: new URL(`/insights/${post.id}`, Astro.site).toString(),
+};
+---
+
+<Base title={`${post.data.title} — Insights | Ótima`} description={post.data.description} jsonLd={jsonLd}>
+  <article class="mx-auto max-w-3xl px-4 pb-16 pt-20">
+    <a href="/insights" class="text-sm text-navy/60 hover:text-cyan">← Todos os insights</a>
+    <h1 class="mt-4 text-4xl font-bold tracking-tight text-navy">{post.data.title}</h1>
+    <time datetime={post.data.pubDate.toISOString()} class="mt-2 block text-sm text-navy/60">
+      {formato.format(post.data.pubDate)}
+    </time>
+
+    <div
+      class="prose-headings:text-navy prose-a:text-navy mt-8 max-w-none space-y-4 leading-relaxed text-navy-dark/90"
+    >
+      <Content />
+    </div>
+
+    {
+      post.data.substackUrl && (
+        <p class="mt-10 border-t border-navy/10 pt-6 text-sm text-navy/70">
+          Publicado originalmente na newsletter{' '}
+          <a href={post.data.substackUrl} rel="noopener" class="underline">
+            Dados Sem Achismo
+          </a>
+          .
+        </p>
+      )
+    }
+  </article>
+</Base>

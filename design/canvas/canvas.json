@@ -1,0 +1,13 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1440, "h": 1850, "title": "Home", "expand": "fill" },
+    { "file": "Institucional.dc.html", "x": 1590, "y": 0, "w": 1440, "h": 3250, "title": "Institucional (B2B)", "expand": "fill" },
+    { "file": "ParecerEstrategico.dc.html", "x": 3180, "y": 0, "w": 1440, "h": 3350, "title": "Parecer Estratégico (B2C)", "expand": "fill" }
+  ],
+  "annotations": [
+    { "id": "nota-logo", "x": 0, "y": -170, "w": 420, "text": "Logo agora é a imagem real (logo ótima.jpeg, fundo removido). No footer entra a variante branca gerada a partir dela. Ajuste só tamanho/posição — o desenho é o original." },
+    { "id": "nota-trilhas", "x": 1590, "y": -170, "w": 1030, "text": "Institucional (esquerda) = trilha B2B: tom sóbrio, sem estilo \"sketch\". Parecer Estratégico (direita) = trilha B2C: fundo creme + cards com traço grosso tipo desenho à mão, no estilo das ilustrações do Substack. As duas trilhas não devem trocar de tom nem de CTA entre si." },
+    { "id": "nota-placeholders", "x": 3180, "y": -170, "w": 420, "text": "Funil redesenhado em 02/09: seleção mensal → WhatsApp → reunião de 30min ANTES do pagamento → proposta com preço → entrega única. Preço fica de fora da página de propósito. Os 3 casos anteriores vieram do site antigo, aprovados por Leandro (sem o "48 horas")." }
+  ],
+  "launch": { "view": "canvas" }
+}

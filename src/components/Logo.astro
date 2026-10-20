@@ -1,0 +1,25 @@
+---
+// Logotipo real da Ótima, derivado do arquivo enviado por Leandro
+// ("logo ótima.jpeg"). Processado em public/brand/:
+//  - logo-otima-dark.png  : navy + cyan sobre fundo transparente (header, fundos claros)
+//  - logo-otima-light.png : branco + cyan sobre fundo transparente (footer navy)
+//  - logo-otima-mark.png  : só o "Ó" com o acento cyan (favicon / ícone)
+// Proporção do lockup completo: 1184 x 520.
+
+interface Props {
+  class?: string;
+  /** 'light' para uso sobre fundo escuro (ex.: footer navy). */
+  variant?: 'dark' | 'light';
+}
+const { class: className = '', variant = 'dark' } = Astro.props;
+const src = variant === 'light' ? '/brand/logo-otima-light.png' : '/brand/logo-otima-dark.png';
+---
+
+<img
+  src={src}
+  alt="Ótima Inteligência de Mercado"
+  width="1184"
+  height="520"
+  decoding="async"
+  class={className}
+/>

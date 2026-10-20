@@ -1,0 +1,63 @@
+---
+import Logo from './Logo.astro';
+
+// Mesmo isolamento de trilhas do Header (CLAUDE.md §2.2).
+const path = Astro.url.pathname;
+const year = new Date().getFullYear();
+
+const navLinks = [
+  { href: '/institucional', label: 'Pesquisa institucional' },
+  { href: '/parecer-estrategico', label: 'Parecer Estratégico' },
+  { href: '/insights', label: 'Insights' },
+  { href: '/sobre', label: 'Sobre' },
+  { href: '/privacidade', label: 'Política de privacidade' },
+].filter((link) => {
+  if (path.startsWith('/institucional')) return link.href !== '/parecer-estrategico';
+  if (path.startsWith('/parecer-estrategico')) return link.href !== '/institucional';
+  return true;
+});
+---
+
+<footer class="mt-16 bg-navy text-white">
+  <div class="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:grid-cols-3">
+    <div>
+      <Logo variant="light" class="h-12 w-auto" />
+      <p class="mt-3 text-sm text-white/80">
+        Pesquisa e inteligência de mercado há 21 anos.<br />
+        Campo Grande — MS
+      </p>
+    </div>
+    <div class="text-sm">
+      <p class="font-semibold uppercase tracking-wide text-white/60">Contato</p>
+      <ul class="mt-3 space-y-2">
+        <li>
+          <a href="mailto:contato@otimaconsultoria.com.br" class="hover:text-cyan">
+            contato@otimaconsultoria.com.br
+          </a>
+        </li>
+        <li>
+          <a href="https://wa.me/556730154922" rel="noopener" class="hover:text-cyan">
+            WhatsApp: +55 67 3015-4922
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="text-sm">
+      <p class="font-semibold uppercase tracking-wide text-white/60">Navegação</p>
+      <ul class="mt-3 space-y-2">
+        {
+          navLinks.map((link) => (
+            <li>
+              <a href={link.href} class="hover:text-cyan">
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10 py-4 text-center text-xs text-white/60">
+    © {year} Ótima Inteligência de Mercado. Todos os direitos reservados.
+  </div>
+</footer>

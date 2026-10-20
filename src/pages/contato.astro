@@ -1,0 +1,85 @@
+---
+import Base from '../layouts/Base.astro';
+import FormStatus from '../components/FormStatus.astro';
+---
+
+<Base
+  title="Contato — Ótima Inteligência de Mercado"
+  description="Fale com a Ótima Inteligência de Mercado: formulário, e-mail contato@otimaconsultoria.com.br ou WhatsApp +55 67 3015-4922. Campo Grande/MS."
+>
+  <section class="mx-auto max-w-3xl px-4 pb-6 pt-20">
+    <h1 class="text-4xl font-bold tracking-tight text-navy">Fale com a Ótima</h1>
+    <p class="mt-4 text-navy-dark/85">
+      Prefere canal direto? Escreva para
+      <a href="mailto:contato@otimaconsultoria.com.br" class="underline decoration-cyan decoration-2 underline-offset-4">
+        contato@otimaconsultoria.com.br
+      </a>
+      ou chame no
+      <a href="https://wa.me/556730154922" rel="noopener" class="underline decoration-cyan decoration-2 underline-offset-4">
+        WhatsApp +55 67 3015-4922</a
+      >.
+    </p>
+  </section>
+
+  <section id="formulario" class="mx-auto max-w-3xl px-4 py-10">
+    <FormStatus />
+
+    <form method="post" action="/api/forms" class="mt-6 grid gap-5">
+      <input type="hidden" name="form" value="contato" />
+      <!-- Honeypot: invisível para humanos -->
+      <div class="hidden" aria-hidden="true">
+        <label>Não preencha este campo <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2">
+        <label class="grid gap-1 text-sm font-medium text-navy">
+          Nome *
+          <input required minlength="2" maxlength="120" name="nome" type="text" autocomplete="name"
+            class="rounded-md border border-navy/25 bg-white px-3 py-2 text-navy-dark focus:border-navy focus:outline-none" />
+        </label>
+        <label class="grid gap-1 text-sm font-medium text-navy">
+          E-mail *
+          <input required maxlength="200" name="email" type="email" autocomplete="email"
+            class="rounded-md border border-navy/25 bg-white px-3 py-2 text-navy-dark focus:border-navy focus:outline-none" />
+        </label>
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2">
+        <label class="grid gap-1 text-sm font-medium text-navy">
+          Telefone (opcional)
+          <input maxlength="30" name="telefone" type="tel" autocomplete="tel"
+            class="rounded-md border border-navy/25 bg-white px-3 py-2 text-navy-dark focus:border-navy focus:outline-none" />
+        </label>
+        <label class="grid gap-1 text-sm font-medium text-navy">
+          Eu sou… *
+          <select required name="tipo"
+            class="rounded-md border border-navy/25 bg-white px-3 py-2 text-navy-dark focus:border-navy focus:outline-none">
+            <option value="">Selecione…</option>
+            <option value="sistema-s">Sistema S / órgão público</option>
+            <option value="pme">Empresário(a) PME</option>
+            <option value="outro">Outro</option>
+          </select>
+        </label>
+      </div>
+
+      <label class="grid gap-1 text-sm font-medium text-navy">
+        Mensagem *
+        <textarea required minlength="10" maxlength="3000" name="mensagem" rows="5"
+          class="rounded-md border border-navy/25 bg-white px-3 py-2 text-navy-dark focus:border-navy focus:outline-none"></textarea>
+      </label>
+
+      <label class="flex items-start gap-2 text-sm text-navy-dark/80">
+        <input required type="checkbox" name="consentimento" class="mt-1" />
+        <span>
+          Autorizo o uso dos dados informados para retorno deste contato, conforme a
+          <a href="/privacidade" class="underline">política de privacidade</a>. *
+        </span>
+      </label>
+
+      <button type="submit"
+        class="justify-self-start rounded-md bg-navy px-6 py-3 font-semibold text-white transition hover:bg-navy-dark">
+        Enviar mensagem
+      </button>
+    </form>
+  </section>
+</Base>

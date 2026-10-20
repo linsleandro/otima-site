@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+  /* Identidade visual oficial da Ótima — extraída de "cores otima.pdf" (manual de marca).
+     Não alterar sem checar o PDF de novo: são as cores reais do logo, não uma aproximação. */
+  --color-navy: #003366; /* azul principal do logotipo "ÓTIMA" */
+  --color-navy-dark: #002933; /* azul mais escuro do manual — texto e contrastes altos */
+  --color-cyan: #33ccff; /* acento do logo (o "chip" sobre o Ó) */
+  --color-gray: #d3d3d3; /* neutro do manual de marca */
+
+  /* Não é cor de marca oficial — é o fundo bege das ilustrações "sketch" do
+     Substack (Dados Sem Achismo). Usar SOMENTE na trilha B2C, nunca na B2B. */
+  --color-cream: #f5efe0;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Sem @layer, regras aqui venceriam as classes utilitárias do Tailwind
+   (bg-cream, bg-navy…) independente de especificidade — por isso o
+   background fica de fora e é controlado só via classe em cada página. */
+body {
+  font-family: var(--font-sans);
+  color: var(--color-navy-dark);
+}
+
+/* Trilha B2C — estilo "sketch editorial" (aplicar SOMENTE em /parecer-estrategico) */
+.sketch-card {
+  border: 2px solid var(--color-navy);
+  border-radius: 0.75rem 0.5rem 0.9rem 0.4rem;
+  box-shadow: 4px 4px 0 0 var(--color-navy);
+}
+
+.sketch-underline {
+  background-image: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--color-cyan) 55%, transparent) 35%,
+    transparent 35%
+  );
+}

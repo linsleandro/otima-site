@@ -1,0 +1,49 @@
+---
+import Logo from './Logo.astro';
+
+// Isolamento de trilhas (CLAUDE.md §2.2): dentro de uma trilha, o menu não
+// exibe o link da trilha oposta.
+const path = Astro.url.pathname;
+
+const allLinks = [
+  { href: '/institucional', label: 'Pesquisa institucional' },
+  { href: '/parecer-estrategico', label: 'Parecer Estratégico' },
+  { href: '/insights', label: 'Insights' },
+  { href: '/sobre', label: 'Sobre' },
+  { href: '/contato', label: 'Contato' },
+];
+
+const links = allLinks.filter((link) => {
+  if (path.startsWith('/institucional')) return link.href !== '/parecer-estrategico';
+  if (path.startsWith('/parecer-estrategico')) return link.href !== '/institucional';
+  return true;
+});
+---
+
+<header class="border-b border-navy/10 bg-white">
+  <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-8 gap-y-3 px-4 py-4">
+    <a href="/" aria-label="Página inicial da Ótima Inteligência de Mercado">
+      <Logo class="h-14 w-auto" />
+    </a>
+    <nav aria-label="Navegação principal">
+      <ul class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-medium text-navy">
+        {
+          links.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                aria-current={path === link.href ? 'page' : undefined}
+                class:list={[
+                  'transition-colors hover:text-cyan',
+                  path === link.href && 'underline decoration-cyan decoration-2 underline-offset-4',
+                ]}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>

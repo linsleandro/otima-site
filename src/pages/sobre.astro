@@ -1,0 +1,83 @@
+---
+import Base from '../layouts/Base.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'Sobre a Ótima Inteligência de Mercado',
+  mainEntity: {
+    '@type': 'ProfessionalService',
+    name: 'Ótima Inteligência de Mercado',
+    foundingDate: '2005',
+    founder: { '@type': 'Person', name: 'Leandro Lins' },
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Campo Grande',
+      addressRegion: 'MS',
+      addressCountry: 'BR',
+    },
+  },
+};
+---
+
+<Base
+  title="Sobre a Ótima — 21 anos de pesquisa e inteligência de mercado"
+  description="Fundada por Leandro Lins em Campo Grande/MS, a Ótima soma 21 anos de pesquisa de mercado e mais de 500 empresas e instituições atendidas. Decisões sem achismo."
+  jsonLd={jsonLd}
+>
+  <section class="mx-auto max-w-4xl px-4 pb-10 pt-20">
+    <p class="text-sm font-semibold uppercase tracking-widest text-cyan">Sobre a Ótima</p>
+    <h1 class="mt-4 text-4xl font-bold tracking-tight text-navy sm:text-5xl">Decisões sem achismo.</h1>
+    <p class="mt-6 max-w-2xl text-lg text-navy-dark/85">
+      A Ótima Inteligência de Mercado nasceu em Campo Grande/MS e há 21 anos faz uma coisa só: transformar
+      pesquisa de verdade — campo, amostra, estatística — em segurança para quem precisa decidir.
+    </p>
+  </section>
+
+  <section class="mx-auto max-w-4xl px-4 py-6">
+    <div class="grid gap-6 sm:grid-cols-3">
+      <div class="rounded-lg border border-navy/15 bg-white p-6 text-center">
+        <p class="text-4xl font-bold text-navy">21</p>
+        <p class="mt-1 text-sm text-navy-dark/70">anos de operação contínua</p>
+      </div>
+      <div class="rounded-lg border border-navy/15 bg-white p-6 text-center">
+        <p class="text-4xl font-bold text-navy">+500</p>
+        <p class="mt-1 text-sm text-navy-dark/70">empresas e instituições atendidas</p>
+      </div>
+      <div class="rounded-lg border border-navy/15 bg-white p-6 text-center">
+        <p class="text-4xl font-bold text-navy">MS</p>
+        <p class="mt-1 text-sm text-navy-dark/70">base em Campo Grande, atuação nacional</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-4xl px-4 py-10">
+    <h2 class="text-2xl font-bold text-navy">Leandro Lins, fundador</h2>
+    <p class="mt-4 max-w-2xl text-navy-dark/85">
+      Pesquisador de mercado há mais de duas décadas, Leandro fundou a Ótima com a convicção de que decisão boa
+      nasce de dado primário — não de achismo, benchmark requentado ou opinião de quem não foi a campo. É essa
+      convicção que dá nome ao posicionamento da casa e à newsletter
+      <a
+        href="https://dadossemachismo.substack.com"
+        rel="noopener"
+        class="underline decoration-cyan decoration-2 underline-offset-4">Dados Sem Achismo</a
+      >.
+    </p>
+  </section>
+
+  <section class="border-t border-navy/10 bg-navy/[0.03]">
+    <div class="mx-auto max-w-4xl px-4 py-12">
+      <h2 class="text-2xl font-bold text-navy">Como podemos ajudar</h2>
+      <div class="mt-6 grid gap-6 md:grid-cols-2">
+        <a href="/institucional" class="rounded-lg border border-navy/15 bg-white p-6 transition hover:border-navy">
+          <h3 class="font-bold text-navy">Instituições e setor público</h3>
+          <p class="mt-2 text-sm text-navy-dark/80">Pesquisa com rigor metodológico e aderência a edital.</p>
+        </a>
+        <a href="/parecer-estrategico" class="rounded-lg border border-navy/15 bg-cream p-6 transition hover:border-navy">
+          <h3 class="font-bold text-navy">Empresários PME</h3>
+          <p class="mt-2 text-sm text-navy-dark/80">Parecer Estratégico para destravar uma decisão específica.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

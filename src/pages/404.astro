@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Página não encontrada — Ótima" description="A página que você procura não existe ou mudou de endereço.">
+  <section class="mx-auto max-w-3xl px-4 py-24 text-center">
+    <p class="text-sm font-semibold uppercase tracking-widest text-cyan">Erro 404</p>
+    <h1 class="mt-4 text-4xl font-bold tracking-tight text-navy">Essa página não existe.</h1>
+    <p class="mt-4 text-navy-dark/80">O endereço pode ter mudado. Estes caminhos resolvem a maioria dos casos:</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-4">
+      <a href="/" class="rounded-md bg-navy px-6 py-3 font-semibold text-white transition hover:bg-navy-dark">Início</a>
+      <a href="/institucional" class="rounded-md border border-navy px-6 py-3 font-semibold text-navy transition hover:bg-navy hover:text-white">
+        Pesquisa institucional
+      </a>
+      <a href="/parecer-estrategico" class="rounded-md border border-navy px-6 py-3 font-semibold text-navy transition hover:bg-navy hover:text-white">
+        Parecer Estratégico
+      </a>
+    </div>
+  </section>
+</Base>

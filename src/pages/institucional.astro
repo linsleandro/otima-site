@@ -1,0 +1,209 @@
+---
+import Base from '../layouts/Base.astro';
+import FormStatus from '../components/FormStatus.astro';
+
+// Trilha Ana (B2B). PROIBIDO nesta página: qualquer copy/CTA da trilha B2C
+// (R$697, 48h, "decisão travada", estética sketch) — CLAUDE.md §2.2.
+
+const etapas = [
+  {
+    titulo: 'Briefing e objetivos de decisão',
+    texto:
+      'Alinhamento com a equipe técnica da instituição: que decisão a pesquisa precisa sustentar, com quais prazos e requisitos de edital ou termo de referência.',
+  },
+  {
+    titulo: 'Desenho metodológico e amostral',
+    texto:
+      'Definição de método (quantitativo, qualitativo ou misto), plano amostral, margem de erro e nível de confiança documentados antes do campo — tudo auditável.',
+  },
+  {
+    titulo: 'Campo com fontes primárias',
+    texto:
+      'Coleta própria e supervisionada — entrevistas, surveys e grupos focais — com controle de qualidade e rastreabilidade dos dados coletados.',
+  },
+  {
+    titulo: 'Tratamento estatístico',
+    texto:
+      'Consistência, ponderação e testes estatísticos adequados ao desenho do estudo, com bases entregues em formato aberto quando o contrato exigir.',
+  },
+  {
+    titulo: 'Relatório acionável e apresentação',
+    texto:
+      'Relatório orientado à decisão — não um volume para engavetar — e apresentação executiva para diretoria e conselho, com defesa técnica dos resultados.',
+  },
+];
+---
+
+<Base
+  title="Pesquisa institucional para Sistema S e setor público — Ótima"
+  description="Pesquisa de mercado com rigor metodológico para Sebrae, SESC, SENAI e órgãos públicos: desenho amostral documentado, fontes primárias e relatórios orientados à decisão. Solicite proposta técnica."
+>
+  <!-- Hero sóbrio (spec institucional.md §1) -->
+  <section class="bg-navy text-white">
+    <div class="mx-auto max-w-6xl px-4 py-20">
+      <p class="text-sm font-semibold uppercase tracking-widest text-cyan">Sistema S e setor público</p>
+      <h1 class="mt-4 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
+        Pesquisa que sustenta a decisão na diretoria — e resiste a auditoria.
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-white/85">
+        Há 21 anos a Ótima conduz estudos para instituições do Sistema S e órgãos públicos com metodologia
+        documentada, fontes primárias e aderência a edital. Não prometemos resultado: prometemos processo
+        rigoroso, do desenho amostral à apresentação final.
+      </p>
+      <a
+        href="#formulario"
+        class="mt-8 inline-block rounded-md bg-cyan px-6 py-3 font-semibold text-navy-dark transition hover:bg-white"
+      >
+        Solicitar proposta técnica
+      </a>
+    </div>
+  </section>
+
+  <!-- Metodologia (spec institucional.md §2) -->
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <h2 class="text-3xl font-bold text-navy">Como conduzimos um estudo</h2>
+    <p class="mt-3 max-w-2xl text-navy-dark/80">
+      Cada etapa gera documentação verificável — o que a sua equipe técnica precisa para defender a
+      contratação e os resultados internamente.
+    </p>
+    <ol class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {
+        etapas.map((etapa, i) => (
+          <li class="rounded-lg border border-navy/15 bg-white p-6">
+            <span class="text-sm font-bold text-cyan">Etapa {i + 1}</span>
+            <h3 class="mt-2 text-lg font-semibold text-navy">{etapa.titulo}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-navy-dark/80">{etapa.texto}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <!-- Aderência a edital (spec institucional.md §3) -->
+  <section class="border-y border-navy/10 bg-navy/[0.03]">
+    <div class="mx-auto max-w-6xl px-4 py-16">
+      <h2 class="text-3xl font-bold text-navy">Experiência com licitação e contratação pública</h2>
+      <div class="mt-6 grid gap-8 md:grid-cols-3">
+        <p class="text-navy-dark/80">
+          Atendemos instituições do Sistema S — Sebrae, SESC, SENAI, Fecomércio — e órgãos públicos por meio de
+          licitações e contratações diretas, com a documentação técnica e fiscal em dia.
+        </p>
+        <p class="text-navy-dark/80">
+          Propostas técnicas escritas para o edital: método, cronograma, equipe e plano amostral respondendo
+          ponto a ponto ao termo de referência.
+        </p>
+        <p class="text-navy-dark/80">
+          Entregas dentro do contrato — relatórios, bases e apresentações — com sigilo e conformidade à LGPD no
+          tratamento dos dados coletados.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Depoimentos: placeholders — NÃO redigir em nome dos clientes (CLAUDE.md §7) -->
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <h2 class="text-3xl font-bold text-navy">Quem já contratou</h2>
+    <div class="mt-8 grid gap-6 md:grid-cols-2">
+      <figure class="rounded-lg border border-dashed border-navy/30 bg-white p-6">
+        <blockquote class="text-navy-dark/60 italic">
+          [Depoimento de Daniela Dias — inserir o texto original do site atual ou versão com resultado
+          quantificado, mediante aprovação da cliente.]
+        </blockquote>
+        <figcaption class="mt-4 text-sm font-semibold text-navy">Daniela Dias — SESC</figcaption>
+      </figure>
+      <figure class="rounded-lg border border-dashed border-navy/30 bg-white p-6">
+        <blockquote class="text-navy-dark/60 italic">
+          [Depoimento de Rodrigo Possari — inserir o texto original do site atual ou versão com resultado
+          quantificado, mediante aprovação do cliente.]
+        </blockquote>
+        <figcaption class="mt-4 text-sm font-semibold text-navy">Rodrigo Possari — Cruzeiro do Sul</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Formulário qualificado (spec institucional.md §5) -->
+  <section id="formulario" class="border-t border-navy/10 bg-navy/[0.03]">
+    <div class="mx-auto max-w-3xl px-4 py-16">
+      <h2 class="text-3xl font-bold text-navy">Solicite uma proposta técnica</h2>
+      <p class="mt-3 text-navy-dark/80">
+        Conte o essencial da demanda. Respondemos pelo e-mail institucional informado.
+      </p>
+
+      <div class="mt-6">
+        <FormStatus successMessage="Solicitação recebida. Retornaremos no e-mail institucional informado." />
+      </div>
+
+      <form method="post" action="/api/forms" class="mt-6 grid gap-5">
+        <input type="hidden" name="form" value="institucional" />
+        <!-- Honeypot: invisível para humanos -->
+        <div class="hidden" aria-hidden="true">
+          <label>Não preencha este campo <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+        </div>
+
+        <div class="grid gap-5 sm:grid-cols-2">
+          <label class="grid gap-1 text-sm font-medium text-navy">
+            Nome completo *
+            <input required minlength="2" maxlength="120" name="nome" type="text" autocomplete="name"
+              class="rounded-md border border-navy/25 bg-white px-3 py-2 text-navy-dark focus:border-navy focus:outline-none" />
+          </label>
+          <label class="grid gap-1 text-sm font-medium text-navy">
+            Cargo *
+            <input required minlength="2" maxlength="120" name="cargo" type="text" autocomplete="organization-title"
+              class="rounded-md border border-navy/25 bg-white px-3 py-2 text-navy-dark focus:border-navy focus:outline-none" />
+          </label>
+        </div>
+
+        <label class="grid gap-1 text-sm font-medium text-navy">
+          Instituição *
+          <input required minlength="2" maxlength="200" name="instituicao" type="text" autocomplete="organization"
+            class="rounded-md border border-navy/25 bg-white px-3 py-2 text-navy-dark focus:border-navy focus:outline-none" />
+        </label>
+
+        <div class="grid gap-5 sm:grid-cols-2">
+          <label class="grid gap-1 text-sm font-medium text-navy">
+            E-mail institucional *
+            <input required maxlength="200" name="email" type="email" autocomplete="email"
+              class="rounded-md border border-navy/25 bg-white px-3 py-2 text-navy-dark focus:border-navy focus:outline-none" />
+          </label>
+          <label class="grid gap-1 text-sm font-medium text-navy">
+            Telefone (opcional)
+            <input maxlength="30" name="telefone" type="tel" autocomplete="tel"
+              class="rounded-md border border-navy/25 bg-white px-3 py-2 text-navy-dark focus:border-navy focus:outline-none" />
+          </label>
+        </div>
+
+        <label class="grid gap-1 text-sm font-medium text-navy">
+          Tipo de demanda *
+          <select required name="demanda"
+            class="rounded-md border border-navy/25 bg-white px-3 py-2 text-navy-dark focus:border-navy focus:outline-none">
+            <option value="">Selecione…</option>
+            <option value="licitacao">Licitação em andamento</option>
+            <option value="proposta-tecnica">Proposta técnica / orçamento</option>
+            <option value="cotacao">Cotação para instrução de processo</option>
+            <option value="outro">Outro</option>
+          </select>
+        </label>
+
+        <label class="grid gap-1 text-sm font-medium text-navy">
+          Descreva a necessidade *
+          <textarea required minlength="10" maxlength="3000" name="descricao" rows="5"
+            class="rounded-md border border-navy/25 bg-white px-3 py-2 text-navy-dark focus:border-navy focus:outline-none"
+            placeholder="Objetivo do estudo, público a pesquisar, prazo previsto, referência de edital (se houver)…"></textarea>
+        </label>
+
+        <label class="flex items-start gap-2 text-sm text-navy-dark/80">
+          <input required type="checkbox" name="consentimento" class="mt-1" />
+          <span>
+            Autorizo o uso dos dados informados para retorno deste contato, conforme a
+            <a href="/privacidade" class="underline">política de privacidade</a>. *
+          </span>
+        </label>
+
+        <button type="submit"
+          class="justify-self-start rounded-md bg-navy px-6 py-3 font-semibold text-white transition hover:bg-navy-dark">
+          Enviar solicitação
+        </button>
+      </form>
+    </div>
+  </section>
+</Base>
